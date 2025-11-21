@@ -1,0 +1,20 @@
+/*
+Theme Name: PAXDES Portfolio
+Theme URI: https://paxdes.com
+Author: Ahmad Al Khalaf
+Author URI: https://paxdes.com
+Description: Professionelles Portfolio-Theme für Webentwickler, Systemingenieur und Plattform-Architekt Ahmad Al Khalaf. Modernes, minimalistisches Design mit Fokus auf Performance, Sicherheit und Benutzerfreundlichkeit.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.8
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: paxdes-portfolio
+Tags: portfolio, one-column, two-columns, custom-menu, custom-logo, editor-style, featured-images, full-width-template, theme-options, translation-ready, blog, e-commerce
+
+PAXDES Portfolio WordPress Theme
+Copyright (C) 2025 Ahmad Al Khalaf
+*/
+
+/* Theme-spezifische Styles werden über enqueued CSS-Dateien geladen */
