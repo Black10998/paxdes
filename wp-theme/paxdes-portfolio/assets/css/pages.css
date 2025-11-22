@@ -1,0 +1,380 @@
+/**
+ * PAXDES Portfolio - Page Styles
+ * Styles for custom page templates
+ */
+
+/* ===================================
+   Technologies Page
+   =================================== */
+
+.tech-box {
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-box:hover {
+    transform: translateY(-5px);
+}
+
+.tech-box .tech-icon {
+    font-size: 48px;
+    color: #00D9FF;
+    margin-bottom: 15px;
+}
+
+.tech-box h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.tech-box .skill-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.tech-box .skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #0066FF, #00D9FF);
+    border-radius: 10px;
+    transition: width 1s ease;
+}
+
+.tech-box .skill-level {
+    font-size: 14px;
+    color: #00D9FF;
+    font-weight: 600;
+}
+
+.tool-box {
+    padding: 40px 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-box:hover {
+    transform: translateY(-5px);
+}
+
+.tool-box i {
+    font-size: 48px;
+    color: #00D9FF;
+    margin-bottom: 20px;
+}
+
+.tool-box h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.tool-box p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* ===================================
+   Projects Page
+   =================================== */
+
+.project-filter {
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 2px solid rgba(0, 217, 255, 0.3);
+    color: #ffffff;
+    padding: 12px 30px;
+    margin: 5px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: linear-gradient(135deg, #0066FF, #00D9FF);
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+}
+
+.projects-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-item {
+    transition: all 0.3s ease;
+}
+
+.project-box {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 40px rgba(0, 217, 255, 0.2);
+}
+
+.project-box .project-img {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-box .project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-box:hover .project-img img {
+    transform: scale(1.1);
+}
+
+.project-box .project-img.placeholder {
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 217, 255, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-box .project-img.placeholder .placeholder-content i {
+    font-size: 64px;
+    color: rgba(0, 217, 255, 0.3);
+}
+
+.project-box .project-info {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-box .project-info h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.project-box .project-info .project-category {
+    font-size: 12px;
+    color: #00D9FF;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.project-box .project-info .project-excerpt {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.project-box .project-info .project-link {
+    margin-top: auto;
+}
+
+.project-box .project-info .project-link span {
+    color: #00D9FF;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.project-box:hover .project-info .project-link span {
+    gap: 12px;
+}
+
+/* ===================================
+   Page Hero
+   =================================== */
+
+.page-hero {
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.page-hero .page-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.page-hero .lead {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+/* ===================================
+   Intro Box
+   =================================== */
+
+.intro-box {
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-box .content-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+.intro-box .lead {
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/* ===================================
+   Section Heading
+   =================================== */
+
+.section-heading {
+    margin-bottom: 40px;
+}
+
+.section-heading h6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #00D9FF;
+    margin-bottom: 15px;
+}
+
+.section-heading h6 img {
+    width: 20px;
+    height: 20px;
+}
+
+.section-heading h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+}
+
+/* ===================================
+   CTA Box
+   =================================== */
+
+.cta-box {
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-box h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.cta-box p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+}
+
+.cta-box .theme-btn {
+    display: inline-block;
+}
+
+/* ===================================
+   Responsive
+   =================================== */
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 60px 20px;
+    }
+
+    .page-hero .page-title {
+        font-size: 32px;
+    }
+
+    .page-hero .lead {
+        font-size: 16px;
+    }
+
+    .section-heading h2 {
+        font-size: 28px;
+    }
+
+    .intro-box {
+        padding: 30px 20px;
+    }
+
+    .intro-box .lead {
+        font-size: 16px;
+    }
+
+    .cta-box {
+        padding: 40px 20px;
+    }
+
+    .cta-box h2 {
+        font-size: 24px;
+    }
+
+    .filter-btn {
+        padding: 10px 20px;
+        font-size: 12px;
+        margin: 3px;
+    }
+
+    .project-box .project-img {
+        height: 200px;
+    }
+
+    .tech-box,
+    .tool-box {
+        padding: 25px 15px;
+    }
+}

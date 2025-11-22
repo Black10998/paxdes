@@ -16,7 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Registriere ACF-Felder für Projekte
  */
-if ( function_exists( 'acf_add_local_field_group' ) ) {
+function paxdes_register_acf_fields() {
+    // Prüfe ob ACF verfügbar ist
+    if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+        return;
+    }
 
     acf_add_local_field_group( array(
         'key'      => 'group_project_details',
@@ -117,7 +121,6 @@ if ( function_exists( 'acf_add_local_field_group' ) ) {
         'label_placement'       => 'top',
         'instruction_placement' => 'label',
     ) );
-}
 
     // Editierbare Bildbereiche für Startseite
     acf_add_local_field_group( array(
@@ -221,6 +224,9 @@ if ( function_exists( 'acf_add_local_field_group' ) ) {
         'instruction_placement' => 'label',
     ) );
 }
+
+// Hook zum Registrieren der ACF-Felder
+add_action( 'acf/init', 'paxdes_register_acf_fields' );
 
 /**
  * Helper-Funktion: Hole ACF-Feld oder Fallback zu Post Meta
