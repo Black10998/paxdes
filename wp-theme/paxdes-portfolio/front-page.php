@@ -101,7 +101,7 @@ get_header();
                             <img decoding="async" src="<?php echo esc_url( $bg_url ); ?>" alt="BG" class="bg-img">
                             
                             <div class="marquee">
-                                <div style="animation: marquee 20s linear infinite;">
+                                <div style="animation: marquee 8s linear infinite;">
                                     <?php 
                                     // Featured-Banner Stern-Icon (editierbar)
                                     $star_icon = '';
@@ -117,11 +117,7 @@ get_header();
                                     
                                     for ( $i = 0; $i < 7; $i++ ) : 
                                     ?>
-                                        <span>
-                                            <?php esc_html_e( 'AKTUELLE PROJEKTE UND', 'paxdes-portfolio' ); ?> 
-                                            <b><?php esc_html_e( 'REFERENZEN', 'paxdes-portfolio' ); ?></b>
-                                            <img decoding="async" src="<?php echo esc_url( $star_icon ); ?>" alt="Star">
-                                        </span>
+                                        <span>AKTUELLE PROJEKTE UND <b>REFERENZEN</b><img decoding="async" src="<?php echo esc_url( $star_icon ); ?>" alt=""></span>
                                     <?php endfor; ?>
                                 </div>
                             </div>
