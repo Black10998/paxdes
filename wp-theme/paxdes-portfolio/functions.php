@@ -74,6 +74,7 @@ function paxdes_enqueue_scripts() {
     wp_enqueue_style( 'paxdes-bootstrap', PAXDES_THEME_URI . '/assets/css/bootstrap.min.css', array(), PAXDES_VERSION );
     wp_enqueue_style( 'paxdes-aos', PAXDES_THEME_URI . '/assets/css/aos.css', array(), PAXDES_VERSION );
     wp_enqueue_style( 'paxdes-iconoir', PAXDES_THEME_URI . '/assets/css/iconoir.css', array(), PAXDES_VERSION );
+    wp_enqueue_style( 'paxdes-animations', PAXDES_THEME_URI . '/assets/css/animations.css', array(), PAXDES_VERSION );
     wp_enqueue_style( 'paxdes-navigation', PAXDES_THEME_URI . '/assets/css/navigation.css', array(), PAXDES_VERSION );
     wp_enqueue_style( 'paxdes-pages', PAXDES_THEME_URI . '/assets/css/pages.css', array(), PAXDES_VERSION );
     wp_enqueue_style( 'paxdes-main-style', PAXDES_THEME_URI . '/assets/css/style.css', array(), PAXDES_VERSION );
@@ -179,9 +180,40 @@ function paxdes_customize_register( $wp_customize ) {
         'sanitize_callback' => 'absint',
     ) );
     $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_hero_image', array(
-        'label'     => esc_html__( 'Hero Bild', 'paxdes-portfolio' ),
-        'section'   => 'paxdes_hero_section',
-        'mime_type' => 'image',
+        'label'       => esc_html__( 'Hero Bild (Profilbild)', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Hauptbild im Hero-Bereich. Empfohlen: 800x800px, quadratisch', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_hero_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // Logo/Branding Section
+    $wp_customize->add_section( 'paxdes_branding_section', array(
+        'title'    => esc_html__( 'Branding & Logos', 'paxdes-portfolio' ),
+        'priority' => 25,
+    ) );
+
+    // Favicon
+    $wp_customize->add_setting( 'paxdes_favicon', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_favicon', array(
+        'label'       => esc_html__( 'Favicon', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Browser-Tab-Icon (empfohlen: 32x32px oder 64x64px, PNG/ICO)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // Background Pattern
+    $wp_customize->add_setting( 'paxdes_bg_pattern', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_bg_pattern', array(
+        'label'       => esc_html__( 'Hintergrund-Muster', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Subtiles Muster für Shadow-Boxen (empfohlen: 500x500px)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'mime_type'   => 'image',
     ) ) );
 
     // CTA Button Text

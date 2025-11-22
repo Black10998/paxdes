@@ -1,0 +1,373 @@
+/**
+ * PAXDES Portfolio - Animations & Effects
+ * Original-style animations and transitions
+ */
+
+/* ===================================
+   Preloader Animations
+   =================================== */
+
+@keyframes preloader_slide {
+    0% {
+        transform: scaleY(1);
+    }
+    100% {
+        transform: scaleY(0);
+    }
+}
+
+@keyframes loader_running {
+    0% {
+        transform: scaleX(0);
+    }
+    50% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(0);
+    }
+}
+
+/* ===================================
+   Marquee Animation
+   =================================== */
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee > div {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee span {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+/* ===================================
+   Hover Effects (Original Style)
+   =================================== */
+
+.shadow-box {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shadow-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* About Me Box Hover */
+.about-me-box {
+    transition: all 0.3s ease;
+}
+
+.about-me-box:hover {
+    transform: translateY(-10px);
+}
+
+.about-me-box .img-box img {
+    transition: transform 0.5s ease;
+}
+
+.about-me-box:hover .img-box img {
+    transform: scale(1.05);
+}
+
+/* Info Box Hover */
+.info-box {
+    transition: all 0.3s ease;
+}
+
+.info-box:hover {
+    transform: translateY(-5px);
+}
+
+.info-box .about-btn {
+    transition: transform 0.3s ease;
+}
+
+.info-box:hover .about-btn {
+    transform: rotate(90deg);
+}
+
+/* Service Box Hover */
+.service-box {
+    transition: all 0.3s ease;
+}
+
+.service-box:hover {
+    transform: translateY(-10px);
+}
+
+.service-box .icon-box {
+    transition: transform 0.3s ease;
+}
+
+.service-box:hover .icon-box {
+    transform: scale(1.1);
+}
+
+/* ===================================
+   Scroll Animations
+   =================================== */
+
+[data-aos] {
+    opacity: 0;
+    transition-property: opacity, transform;
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+}
+
+[data-aos="fade-up"] {
+    transform: translateY(30px);
+}
+
+[data-aos="fade-up"].aos-animate {
+    transform: translateY(0);
+}
+
+[data-aos="fade-down"] {
+    transform: translateY(-30px);
+}
+
+[data-aos="fade-down"].aos-animate {
+    transform: translateY(0);
+}
+
+[data-aos="fade-left"] {
+    transform: translateX(30px);
+}
+
+[data-aos="fade-left"].aos-animate {
+    transform: translateX(0);
+}
+
+[data-aos="fade-right"] {
+    transform: translateX(-30px);
+}
+
+[data-aos="fade-right"].aos-animate {
+    transform: translateX(0);
+}
+
+[data-aos="zoom-in"] {
+    transform: scale(0.9);
+}
+
+[data-aos="zoom-in"].aos-animate {
+    transform: scale(1);
+}
+
+/* ===================================
+   Button Animations
+   =================================== */
+
+.theme-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.theme-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.theme-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.about-btn {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.about-btn:hover {
+    transform: rotate(180deg);
+}
+
+/* ===================================
+   Image Animations
+   =================================== */
+
+.bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.05;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+}
+
+.shadow-box:hover .bg-img {
+    opacity: 0.08;
+}
+
+.proj-img {
+    transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.shadow-box:hover .proj-img {
+    transform: scale(1.05);
+}
+
+/* ===================================
+   Link Hover Effects
+   =================================== */
+
+a {
+    transition: color 0.3s ease;
+}
+
+.overlay-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+/* ===================================
+   Smooth Scroll
+   =================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===================================
+   Loading States
+   =================================== */
+
+.loading {
+    opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* ===================================
+   Fade In Animation
+   =================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+/* ===================================
+   Pulse Animation
+   =================================== */
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* ===================================
+   Slide In Animations
+   =================================== */
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.6s ease forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.6s ease forwards;
+}
+
+/* ===================================
+   Responsive Animations
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Reduce animation intensity on mobile */
+    .shadow-box:hover {
+        transform: translateY(-3px);
+    }
+
+    .about-me-box:hover {
+        transform: translateY(-5px);
+    }
+
+    .service-box:hover {
+        transform: translateY(-5px);
+    }
+}
