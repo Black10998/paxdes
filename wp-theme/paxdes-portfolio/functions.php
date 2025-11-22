@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Theme-Konstanten
-define( 'PAXDES_VERSION', '2.2.0' );
+define( 'PAXDES_VERSION', '4.0.0' );
 define( 'PAXDES_THEME_DIR', get_template_directory() );
 define( 'PAXDES_THEME_URI', get_template_directory_uri() );
 
@@ -186,6 +186,18 @@ function paxdes_customize_register( $wp_customize ) {
         'mime_type'   => 'image',
     ) ) );
 
+    // Hero Bild Link
+    $wp_customize->add_setting( 'paxdes_hero_image_link', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( 'paxdes_hero_image_link', array(
+        'label'       => esc_html__( 'Hero Bild Link-URL', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'URL für Klick auf Hero-Bild (optional)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_hero_section',
+        'type'        => 'url',
+    ) );
+
     // Logo/Branding Section
     $wp_customize->add_section( 'paxdes_branding_section', array(
         'title'    => esc_html__( 'Branding & Logos', 'paxdes-portfolio' ),
@@ -240,6 +252,18 @@ function paxdes_customize_register( $wp_customize ) {
         'mime_type'   => 'image',
     ) ) );
 
+    // About Button Link
+    $wp_customize->add_setting( 'paxdes_about_btn_link', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( 'paxdes_about_btn_link', array(
+        'label'       => esc_html__( 'About Button Link-URL', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'URL für About-Button (optional, Standard: Über-Mich-Seite)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'type'        => 'url',
+    ) );
+
     // Signature Image
     $wp_customize->add_setting( 'paxdes_signature', array(
         'default'           => '',
@@ -264,6 +288,18 @@ function paxdes_customize_register( $wp_customize ) {
         'mime_type'   => 'image',
     ) ) );
 
+    // Projects Preview Link
+    $wp_customize->add_setting( 'paxdes_projects_preview_link', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( 'paxdes_projects_preview_link', array(
+        'label'       => esc_html__( 'Projekte Box Link-URL', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'URL für Klick auf Projekte-Box (optional, Standard: Projekte-Seite)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'type'        => 'url',
+    ) );
+
     // Services Preview Image
     $wp_customize->add_setting( 'paxdes_services_preview', array(
         'default'           => '',
@@ -275,6 +311,18 @@ function paxdes_customize_register( $wp_customize ) {
         'section'     => 'paxdes_branding_section',
         'mime_type'   => 'image',
     ) ) );
+
+    // Services Preview Link
+    $wp_customize->add_setting( 'paxdes_services_preview_link', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( 'paxdes_services_preview_link', array(
+        'label'       => esc_html__( 'Leistungen Box Link-URL', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'URL für Klick auf Leistungen-Box (optional, Standard: Leistungen-Seite)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'type'        => 'url',
+    ) );
 
     // Blog Preview Image
     $wp_customize->add_setting( 'paxdes_blog_preview', array(
@@ -299,6 +347,18 @@ function paxdes_customize_register( $wp_customize ) {
         'section'     => 'paxdes_branding_section',
         'mime_type'   => 'image',
     ) ) );
+
+    // Contact CTA Icon Link
+    $wp_customize->add_setting( 'paxdes_contact_cta_link', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+    $wp_customize->add_control( 'paxdes_contact_cta_link', array(
+        'label'       => esc_html__( 'Kontakt CTA Link-URL', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'URL für "Let\'s work together" Box (optional, Standard: Kontakt-Seite)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'type'        => 'url',
+    ) );
 
     // CTA Button Text
     $wp_customize->add_setting( 'paxdes_cta_text', array(
