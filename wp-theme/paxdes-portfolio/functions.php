@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Theme-Konstanten
-define( 'PAXDES_VERSION', '2.1.0' );
+define( 'PAXDES_VERSION', '2.2.0' );
 define( 'PAXDES_THEME_DIR', get_template_directory() );
 define( 'PAXDES_THEME_URI', get_template_directory_uri() );
 

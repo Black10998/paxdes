@@ -15,7 +15,25 @@ get_header();
         <div class="row mb-5">
             <div class="col-lg-12">
                 <div class="page-hero shadow-box" data-aos="fade-up">
-                    <img decoding="async" src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/bg1.png' ); ?>" alt="BG" class="bg-img">
+                    <?php
+                    $bg_pattern = paxdes_get_option( 'paxdes_bg_pattern' );
+                    $bg_url = $bg_pattern ? wp_get_attachment_image_url( $bg_pattern, 'full' ) : PAXDES_THEME_URI . '/assets/images/bg1.png';
+                    ?>
+                    <img decoding="async" src="<?php echo esc_url( $bg_url ); ?>" alt="BG" class="bg-img">
+                    
+                    <?php
+                    $services_hero_id = paxdes_get_option( 'paxdes_services_hero_image' );
+                    if ( $services_hero_id ) :
+                    ?>
+                        <div class="hero-image-wrapper">
+                            <?php echo wp_get_attachment_image( $services_hero_id, 'full', false, array(
+                                'class' => 'hero-image',
+                                'alt' => 'Leistungen',
+                                'decoding' => 'async'
+                            ) ); ?>
+                        </div>
+                    <?php endif; ?>
+                    
                     <div class="hero-content text-center">
                         <h1 class="page-title">Leistungen</h1>
                         <p class="lead">Professionelle Lösungen für Ihre digitalen Herausforderungen</p>
