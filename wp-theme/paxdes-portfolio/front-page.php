@@ -68,15 +68,11 @@ get_header();
                             <h1><?php echo esc_html( paxdes_get_option( 'paxdes_hero_name', 'Ahmad Al Khalaf' ) ); ?></h1>
                             <p><?php echo esc_html( paxdes_get_option( 'paxdes_hero_description', 'Spezialisiert auf moderne Webanwendungen, Plattform-Architektur und IT-Sicherheit.' ) ); ?></p>
                             <?php
-                            // About-Button Icon (editierbar)
-                            $about_btn_icon = '';
-                            if ( function_exists( 'get_field' ) ) {
-                                $icon = get_field( 'about_btn_icon' );
-                                if ( $icon && is_array( $icon ) ) {
-                                    $about_btn_icon = $icon['url'];
-                                }
-                            }
-                            if ( ! $about_btn_icon ) {
+                            // About-Button Icon (editierbar über Customizer)
+                            $about_btn_icon_id = paxdes_get_option( 'paxdes_about_btn_icon' );
+                            if ( $about_btn_icon_id ) {
+                                $about_btn_icon = wp_get_attachment_image_url( $about_btn_icon_id, 'full' );
+                            } else {
                                 $about_btn_icon = PAXDES_THEME_URI . '/assets/images/icon.svg';
                             }
                             ?>
@@ -101,21 +97,18 @@ get_header();
                             <img decoding="async" src="<?php echo esc_url( $bg_url ); ?>" alt="BG" class="bg-img">
                             
                             <div class="marquee">
-                                <div style="animation: marquee 8s linear infinite;">
+                                <div>
                                     <?php 
-                                    // Featured-Banner Stern-Icon (editierbar)
-                                    $star_icon = '';
-                                    if ( function_exists( 'get_field' ) ) {
-                                        $icon = get_field( 'featured_star' );
-                                        if ( $icon && is_array( $icon ) ) {
-                                            $star_icon = $icon['url'];
-                                        }
-                                    }
-                                    if ( ! $star_icon ) {
+                                    // Featured-Banner Stern-Icon (editierbar über Customizer)
+                                    $star_icon_id = paxdes_get_option( 'paxdes_star_icon' );
+                                    if ( $star_icon_id ) {
+                                        $star_icon = wp_get_attachment_image_url( $star_icon_id, 'full' );
+                                    } else {
                                         $star_icon = PAXDES_THEME_URI . '/assets/images/star1.svg';
                                     }
                                     
-                                    for ( $i = 0; $i < 7; $i++ ) : 
+                                    // Doppelte Anzahl für nahtlose Animation
+                                    for ( $i = 0; $i < 14; $i++ ) : 
                                     ?>
                                         <span>AKTUELLE PROJEKTE UND <b>REFERENZEN</b><img decoding="async" src="<?php echo esc_url( $star_icon ); ?>" alt=""></span>
                                     <?php endfor; ?>
@@ -140,19 +133,18 @@ get_header();
                                 <img decoding="async" src="<?php echo esc_url( $bg_url ); ?>" alt="BG" class="bg-img">
                                 
                                 <?php
-                                // Signatur-Bild (editierbar)
-                                $signature = '';
-                                if ( function_exists( 'get_field' ) ) {
-                                    $sig = get_field( 'credentials_signature' );
-                                    if ( $sig && is_array( $sig ) ) {
-                                        $signature = $sig['url'];
-                                    }
-                                }
-                                if ( ! $signature ) {
-                                    $signature = PAXDES_THEME_URI . '/assets/images/sign.png';
+                                // Signatur-Bild (editierbar über Customizer)
+                                $signature_id = paxdes_get_option( 'paxdes_signature' );
+                                if ( $signature_id ) {
+                                    echo wp_get_attachment_image( $signature_id, 'full', false, array(
+                                        'class' => 'proj-img',
+                                        'alt' => 'Signatur',
+                                        'decoding' => 'async'
+                                    ) );
+                                } else {
+                                    echo '<img decoding="async" class="proj-img" src="' . esc_url( PAXDES_THEME_URI . '/assets/images/sign.png' ) . '" alt="Signatur">';
                                 }
                                 ?>
-                                <img decoding="async" class="proj-img" src="<?php echo esc_url( $signature ); ?>" alt="Signatur">
                                 
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="infos">

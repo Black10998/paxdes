@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Theme-Konstanten
-define( 'PAXDES_VERSION', '2.0.0' );
+define( 'PAXDES_VERSION', '2.1.0' );
 define( 'PAXDES_THEME_DIR', get_template_directory() );
 define( 'PAXDES_THEME_URI', get_template_directory_uri() );
 
@@ -216,6 +216,90 @@ function paxdes_customize_register( $wp_customize ) {
         'mime_type'   => 'image',
     ) ) );
 
+    // Star Icon (Featured Banner)
+    $wp_customize->add_setting( 'paxdes_star_icon', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_star_icon', array(
+        'label'       => esc_html__( 'Stern-Icon (Featured Banner)', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Icon für das scrollende Banner (empfohlen: SVG, 20x20px)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // About Button Icon
+    $wp_customize->add_setting( 'paxdes_about_btn_icon', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_about_btn_icon', array(
+        'label'       => esc_html__( 'About Button Icon', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Icon für About/Mehr-Buttons (empfohlen: SVG, 40x40px)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // Signature Image
+    $wp_customize->add_setting( 'paxdes_signature', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_signature', array(
+        'label'       => esc_html__( 'Signatur-Bild', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Persönliche Signatur für Credentials-Box (empfohlen: PNG, transparent)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // Projects Preview Image
+    $wp_customize->add_setting( 'paxdes_projects_preview', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_projects_preview', array(
+        'label'       => esc_html__( 'Projekte Vorschau-Bild', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Bild für die Projekte-Box auf der Startseite (empfohlen: 600x400px)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // Services Preview Image
+    $wp_customize->add_setting( 'paxdes_services_preview', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_services_preview', array(
+        'label'       => esc_html__( 'Leistungen Vorschau-Bild', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Bild für die Leistungen-Box auf der Startseite (optional)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // Blog Preview Image
+    $wp_customize->add_setting( 'paxdes_blog_preview', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_blog_preview', array(
+        'label'       => esc_html__( 'Blog Vorschau-Bild', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Bild für die Blog-Box auf der Startseite (empfohlen: 600x400px)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // Contact CTA Icon
+    $wp_customize->add_setting( 'paxdes_contact_cta_icon', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_contact_cta_icon', array(
+        'label'       => esc_html__( 'Kontakt CTA Icon', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Großes Icon für "Let\'s work together" Box (empfohlen: PNG, 200x200px)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_branding_section',
+        'mime_type'   => 'image',
+    ) ) );
+
     // CTA Button Text
     $wp_customize->add_setting( 'paxdes_cta_text', array(
         'default'           => 'Kontakt aufnehmen',
@@ -290,6 +374,73 @@ function paxdes_customize_register( $wp_customize ) {
             'type'    => 'url',
         ) );
     }
+
+    // Page-Specific Images Section
+    $wp_customize->add_section( 'paxdes_page_images_section', array(
+        'title'       => esc_html__( 'Seiten-Bilder', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Bilder für spezifische Seiten und Bereiche', 'paxdes-portfolio' ),
+        'priority'    => 35,
+    ) );
+
+    // About Page Hero Image
+    $wp_customize->add_setting( 'paxdes_about_hero_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_about_hero_image', array(
+        'label'       => esc_html__( 'Über-Mich Seite: Hero-Bild', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Hauptbild für die Über-Mich Seite (empfohlen: 800x800px)', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_page_images_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // Services Page Hero Image
+    $wp_customize->add_setting( 'paxdes_services_hero_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_services_hero_image', array(
+        'label'       => esc_html__( 'Leistungen Seite: Hero-Bild', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Hauptbild für die Leistungen Seite', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_page_images_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // Technologies Page Hero Image
+    $wp_customize->add_setting( 'paxdes_tech_hero_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_tech_hero_image', array(
+        'label'       => esc_html__( 'Technologien Seite: Hero-Bild', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Hauptbild für die Technologien Seite', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_page_images_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // Projects Page Hero Image
+    $wp_customize->add_setting( 'paxdes_projects_hero_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_projects_hero_image', array(
+        'label'       => esc_html__( 'Projekte Seite: Hero-Bild', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Hauptbild für die Projekte Seite', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_page_images_section',
+        'mime_type'   => 'image',
+    ) ) );
+
+    // Contact Page Hero Image
+    $wp_customize->add_setting( 'paxdes_contact_hero_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'paxdes_contact_hero_image', array(
+        'label'       => esc_html__( 'Kontakt Seite: Hero-Bild', 'paxdes-portfolio' ),
+        'description' => esc_html__( 'Hauptbild für die Kontakt Seite', 'paxdes-portfolio' ),
+        'section'     => 'paxdes_page_images_section',
+        'mime_type'   => 'image',
+    ) ) );
 }
 add_action( 'customize_register', 'paxdes_customize_register' );
 

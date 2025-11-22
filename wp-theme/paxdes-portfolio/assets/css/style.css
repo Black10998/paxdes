@@ -537,11 +537,18 @@ ol {
 }
 
 .marquee div {
-    
+    display: flex;
     position: absolute;
     white-space: nowrap;
     will-change: transform;
     font-size: 12px;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee span {
+    display: inline-flex;
+    align-items: center;
+    padding-right: 10px;
 }
 
 .about-area .about-credentials-wrap .banner .marquee b {
@@ -550,7 +557,9 @@ ol {
 }
 .about-area .about-credentials-wrap .banner .marquee img {
     display: inline-block;
-    margin: 0 5px;
+    margin: 0 8px;
+    height: 14px;
+    width: auto;
 }
 .about-area .about-credentials-wrap > .gx-row > * {
     flex: 1;
@@ -1495,9 +1504,12 @@ ol {
 
 
 @keyframes marquee {
-    
-    from { transform: translateX(0); }
-    to { transform: translateX(-65.3%); }
+    0% { 
+        transform: translateX(0); 
+    }
+    100% { 
+        transform: translateX(-50%); 
+    }
 }
 
 @keyframes loader_running {
