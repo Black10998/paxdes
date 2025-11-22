@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <?php the_custom_logo(); ?>
             <?php else : ?>
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo">
-                    <img src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/logo.svg' ); ?>" alt="<?php bloginfo( 'name' ); ?>">
+                    <img src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/paxdes-logo.svg' ); ?>" alt="PAXDES - <?php bloginfo( 'name' ); ?>">
                 </a>
             <?php endif; ?>
 

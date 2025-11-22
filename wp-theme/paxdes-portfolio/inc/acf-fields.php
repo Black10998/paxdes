@@ -119,6 +119,109 @@ if ( function_exists( 'acf_add_local_field_group' ) ) {
     ) );
 }
 
+    // Editierbare Bildbereiche für Startseite
+    acf_add_local_field_group( array(
+        'key'      => 'group_homepage_images',
+        'title'    => 'Startseiten-Bilder',
+        'fields'   => array(
+            array(
+                'key'          => 'field_hero_image',
+                'label'        => 'Hero-Bild',
+                'name'         => 'hero_image',
+                'type'         => 'image',
+                'instructions' => 'Hauptbild im Hero-Bereich (empfohlen: 800x800px)',
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+            ),
+            array(
+                'key'          => 'field_about_image',
+                'label'        => 'Über-mich-Bild',
+                'name'         => 'about_image',
+                'type'         => 'image',
+                'instructions' => 'Bild für den Über-mich-Bereich',
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+            ),
+            array(
+                'key'          => 'field_credentials_signature',
+                'label'        => 'Signatur-Bild',
+                'name'         => 'credentials_signature',
+                'type'         => 'image',
+                'instructions' => 'Signatur für Qualifikationen-Box',
+                'return_format' => 'array',
+                'preview_size' => 'thumbnail',
+            ),
+            array(
+                'key'          => 'field_background_pattern',
+                'label'        => 'Hintergrund-Muster',
+                'name'         => 'background_pattern',
+                'type'         => 'image',
+                'instructions' => 'Hintergrund-Textur für Boxen (optional)',
+                'return_format' => 'array',
+                'preview_size' => 'thumbnail',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param'    => 'page_template',
+                    'operator' => '==',
+                    'value'    => 'default',
+                ),
+                array(
+                    'param'    => 'page_type',
+                    'operator' => '==',
+                    'value'    => 'front_page',
+                ),
+            ),
+        ),
+        'menu_order'            => 0,
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+    ) );
+
+    // Editierbare Bilder für alle Seiten
+    acf_add_local_field_group( array(
+        'key'      => 'group_page_images',
+        'title'    => 'Seiten-Bilder',
+        'fields'   => array(
+            array(
+                'key'          => 'field_page_header_image',
+                'label'        => 'Header-Bild',
+                'name'         => 'page_header_image',
+                'type'         => 'image',
+                'instructions' => 'Bild für den Seiten-Header (optional)',
+                'return_format' => 'array',
+                'preview_size' => 'large',
+            ),
+            array(
+                'key'          => 'field_page_gallery',
+                'label'        => 'Bilder-Galerie',
+                'name'         => 'page_gallery',
+                'type'         => 'gallery',
+                'instructions' => 'Zusätzliche Bilder für die Seite',
+                'return_format' => 'array',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'page',
+                ),
+            ),
+        ),
+        'menu_order'            => 10,
+        'position'              => 'side',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+    ) );
+}
+
 /**
  * Helper-Funktion: Hole ACF-Feld oder Fallback zu Post Meta
  */
@@ -132,4 +235,20 @@ function paxdes_get_field( $field_name, $post_id = null ) {
     }
     
     return get_post_meta( $post_id, $field_name, true );
+}
+
+/**
+ * Helper-Funktion: Hole Bild-URL mit Fallback
+ */
+function paxdes_get_image( $field_name, $size = 'full', $default = '' ) {
+    $image = paxdes_get_field( $field_name );
+    
+    if ( $image && is_array( $image ) ) {
+        return isset( $image['sizes'][ $size ] ) ? $image['sizes'][ $size ] : $image['url'];
+    } elseif ( $image && is_numeric( $image ) ) {
+        $img = wp_get_attachment_image_src( $image, $size );
+        return $img ? $img[0] : $default;
+    }
+    
+    return $default ? $default : PAXDES_THEME_URI . '/assets/images/bg1.png';
 }

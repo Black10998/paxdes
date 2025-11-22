@@ -74,6 +74,7 @@ function paxdes_enqueue_scripts() {
     wp_enqueue_style( 'paxdes-bootstrap', PAXDES_THEME_URI . '/assets/css/bootstrap.min.css', array(), PAXDES_VERSION );
     wp_enqueue_style( 'paxdes-aos', PAXDES_THEME_URI . '/assets/css/aos.css', array(), PAXDES_VERSION );
     wp_enqueue_style( 'paxdes-iconoir', PAXDES_THEME_URI . '/assets/css/iconoir.css', array(), PAXDES_VERSION );
+    wp_enqueue_style( 'paxdes-navigation', PAXDES_THEME_URI . '/assets/css/navigation.css', array(), PAXDES_VERSION );
     wp_enqueue_style( 'paxdes-main-style', PAXDES_THEME_URI . '/assets/css/style.css', array(), PAXDES_VERSION );
     wp_enqueue_style( 'paxdes-style', get_stylesheet_uri(), array( 'paxdes-main-style' ), PAXDES_VERSION );
 
