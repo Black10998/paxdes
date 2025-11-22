@@ -18,39 +18,70 @@ get_header();
                 <div data-aos="zoom-in" class="about-me-box-wrap">
                     <div class="about-me-box shadow-box">
                         <?php
-                        $about_page_id = get_option( 'page_for_posts' );
-                        if ( ! $about_page_id ) {
-                            $about_page = get_page_by_path( 'ueber-mich' );
-                            if ( ! $about_page ) {
-                                $about_page = get_page_by_path( 'about' );
-                            }
-                            if ( $about_page ) {
-                                $about_page_id = $about_page->ID;
-                            }
+                        // Link zur Über-mich-Seite
+                        $about_page = get_page_by_path( 'ueber-mich' );
+                        if ( ! $about_page ) {
+                            $about_page = get_page_by_path( 'about' );
                         }
-                        if ( $about_page_id ) :
+                        if ( $about_page ) :
                         ?>
-                            <a class="overlay-link" href="<?php echo esc_url( get_permalink( $about_page_id ) ); ?>"></a>
+                            <a class="overlay-link" href="<?php echo esc_url( get_permalink( $about_page->ID ) ); ?>"></a>
                         <?php endif; ?>
                         
-                        <img decoding="async" src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/bg1.png' ); ?>" alt="BG" class="bg-img">
+                        <?php
+                        // Hintergrund-Bild (editierbar)
+                        $bg_pattern = paxdes_get_option( 'paxdes_bg_pattern' );
+                        if ( $bg_pattern ) {
+                            $bg_url = wp_get_attachment_image_url( $bg_pattern, 'full' );
+                        } else {
+                            $bg_url = PAXDES_THEME_URI . '/assets/images/bg1.png';
+                        }
+                        ?>
+                        <img decoding="async" src="<?php echo esc_url( $bg_url ); ?>" alt="BG" class="bg-img">
 
                         <div class="img-box">
                             <?php
+                            // Hero-Bild (Profilbild) - editierbar über Customizer oder ACF
                             $hero_image_id = paxdes_get_option( 'paxdes_hero_image' );
+                            
+                            // Fallback zu ACF wenn vorhanden
+                            if ( ! $hero_image_id && function_exists( 'get_field' ) ) {
+                                $hero_image = get_field( 'hero_image' );
+                                if ( $hero_image && is_array( $hero_image ) ) {
+                                    $hero_image_id = $hero_image['ID'];
+                                }
+                            }
+                            
                             if ( $hero_image_id ) {
-                                echo wp_get_attachment_image( $hero_image_id, 'full', false, array( 'class' => 'proj-img', 'alt' => 'Ahmad Al Khalaf' ) );
+                                echo wp_get_attachment_image( $hero_image_id, 'full', false, array( 
+                                    'class' => 'proj-img', 
+                                    'alt' => 'Ahmad Al Khalaf',
+                                    'decoding' => 'async'
+                                ) );
                             } else {
                                 echo '<img decoding="async" class="proj-img" src="' . esc_url( PAXDES_THEME_URI . '/assets/images/me.png' ) . '" alt="Ahmad Al Khalaf">';
                             }
                             ?>
                         </div>
                         <div class="infos">
-                            <h5><?php echo esc_html( paxdes_get_option( 'paxdes_hero_title', 'Webentwickler & Systemingenieur' ) ); ?></h5>
+                            <h5><?php echo esc_html( paxdes_get_option( 'paxdes_hero_title', 'WEBENTWICKLER & SYSTEMINGENIEUR' ) ); ?></h5>
                             <h1><?php echo esc_html( paxdes_get_option( 'paxdes_hero_name', 'Ahmad Al Khalaf' ) ); ?></h1>
                             <p><?php echo esc_html( paxdes_get_option( 'paxdes_hero_description', 'Spezialisiert auf moderne Webanwendungen, Plattform-Architektur und IT-Sicherheit.' ) ); ?></p>
-                            <a href="#" class="about-btn">
-                                <img decoding="async" src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/icon.svg' ); ?>" alt="Star">
+                            <?php
+                            // About-Button Icon (editierbar)
+                            $about_btn_icon = '';
+                            if ( function_exists( 'get_field' ) ) {
+                                $icon = get_field( 'about_btn_icon' );
+                                if ( $icon && is_array( $icon ) ) {
+                                    $about_btn_icon = $icon['url'];
+                                }
+                            }
+                            if ( ! $about_btn_icon ) {
+                                $about_btn_icon = PAXDES_THEME_URI . '/assets/images/icon.svg';
+                            }
+                            ?>
+                            <a href="<?php echo $about_page ? esc_url( get_permalink( $about_page->ID ) ) : '#'; ?>" class="about-btn">
+                                <img decoding="async" src="<?php echo esc_url( $about_btn_icon ); ?>" alt="Button">
                             </a>
                         </div>
                     </div>
@@ -63,10 +94,34 @@ get_header();
                 <div class="about-credentials-wrap">
                     <div data-aos="zoom-in">
                         <div class="banner shadow-box">
+                            <?php
+                            // Hintergrund für Banner
+                            $bg_url = $bg_pattern ? wp_get_attachment_image_url( $bg_pattern, 'full' ) : PAXDES_THEME_URI . '/assets/images/bg1.png';
+                            ?>
+                            <img decoding="async" src="<?php echo esc_url( $bg_url ); ?>" alt="BG" class="bg-img">
+                            
                             <div class="marquee">
-                                <div style="animation: marquee 8s linear infinite;">
-                                    <?php for ( $i = 0; $i < 7; $i++ ) : ?>
-                                        <span><?php esc_html_e( 'AKTUELLE PROJEKTE UND', 'paxdes-portfolio' ); ?> <b><?php esc_html_e( 'REFERENZEN', 'paxdes-portfolio' ); ?></b><img decoding="async" src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/star1.svg' ); ?>" alt=""></span>
+                                <div style="animation: marquee 20s linear infinite;">
+                                    <?php 
+                                    // Featured-Banner Stern-Icon (editierbar)
+                                    $star_icon = '';
+                                    if ( function_exists( 'get_field' ) ) {
+                                        $icon = get_field( 'featured_star' );
+                                        if ( $icon && is_array( $icon ) ) {
+                                            $star_icon = $icon['url'];
+                                        }
+                                    }
+                                    if ( ! $star_icon ) {
+                                        $star_icon = PAXDES_THEME_URI . '/assets/images/star1.svg';
+                                    }
+                                    
+                                    for ( $i = 0; $i < 7; $i++ ) : 
+                                    ?>
+                                        <span>
+                                            <?php esc_html_e( 'AKTUELLE PROJEKTE UND', 'paxdes-portfolio' ); ?> 
+                                            <b><?php esc_html_e( 'REFERENZEN', 'paxdes-portfolio' ); ?></b>
+                                            <img decoding="async" src="<?php echo esc_url( $star_icon ); ?>" alt="Star">
+                                        </span>
                                     <?php endfor; ?>
                                 </div>
                             </div>
@@ -80,25 +135,37 @@ get_header();
                         <div data-aos="zoom-in" class="about-crenditials-box">
                             <div class="info-box shadow-box h-full">
                                 <?php
-                                $credentials_page = get_page_by_path( 'qualifikationen' );
-                                if ( ! $credentials_page ) {
-                                    $credentials_page = get_page_by_path( 'credentials' );
-                                }
-                                if ( $credentials_page ) :
+                                // Link zur Über-mich-Seite (Credentials)
+                                if ( $about_page ) :
                                 ?>
-                                    <a class="overlay-link" href="<?php echo esc_url( get_permalink( $credentials_page->ID ) ); ?>"></a>
+                                    <a class="overlay-link" href="<?php echo esc_url( get_permalink( $about_page->ID ) ); ?>"></a>
                                 <?php endif; ?>
                                 
-                                <img decoding="async" src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/bg1.png' ); ?>" alt="BG" class="bg-img">
-                                <img decoding="async" class="proj-img" src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/sign.png' ); ?>" alt="">
+                                <img decoding="async" src="<?php echo esc_url( $bg_url ); ?>" alt="BG" class="bg-img">
+                                
+                                <?php
+                                // Signatur-Bild (editierbar)
+                                $signature = '';
+                                if ( function_exists( 'get_field' ) ) {
+                                    $sig = get_field( 'credentials_signature' );
+                                    if ( $sig && is_array( $sig ) ) {
+                                        $signature = $sig['url'];
+                                    }
+                                }
+                                if ( ! $signature ) {
+                                    $signature = PAXDES_THEME_URI . '/assets/images/sign.png';
+                                }
+                                ?>
+                                <img decoding="async" class="proj-img" src="<?php echo esc_url( $signature ); ?>" alt="Signatur">
+                                
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="infos">
                                         <h5><?php esc_html_e( 'MEHR ÜBER MICH', 'paxdes-portfolio' ); ?></h5>
                                         <h2><?php esc_html_e( 'Qualifikationen', 'paxdes-portfolio' ); ?></h2>
                                     </div>
-                                    <?php if ( $credentials_page ) : ?>
-                                        <a href="<?php echo esc_url( get_permalink( $credentials_page->ID ) ); ?>" class="about-btn">
-                                            <img decoding="async" src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/icon.svg' ); ?>" alt="Star">
+                                    <?php if ( $about_page ) : ?>
+                                        <a href="<?php echo esc_url( get_permalink( $about_page->ID ) ); ?>" class="about-btn">
+                                            <img decoding="async" src="<?php echo esc_url( $about_btn_icon ); ?>" alt="Button">
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -110,6 +177,7 @@ get_header();
                         <div data-aos="zoom-in" class="about-project-box">
                             <div class="info-box shadow-box h-full">
                                 <?php
+                                // Link zur Leistungen-Seite
                                 $services_page = get_page_by_path( 'leistungen' );
                                 if ( ! $services_page ) {
                                     $services_page = get_page_by_path( 'services' );
@@ -119,7 +187,8 @@ get_header();
                                     <a class="overlay-link" href="<?php echo esc_url( get_permalink( $services_page->ID ) ); ?>"></a>
                                 <?php endif; ?>
                                 
-                                <img decoding="async" src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/bg1.png' ); ?>" alt="BG" class="bg-img">
+                                <img decoding="async" src="<?php echo esc_url( $bg_url ); ?>" alt="BG" class="bg-img">
+                                
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="infos">
                                         <h5><?php esc_html_e( 'SPEZIALISIERUNG', 'paxdes-portfolio' ); ?></h5>
@@ -127,7 +196,7 @@ get_header();
                                     </div>
                                     <?php if ( $services_page ) : ?>
                                         <a href="<?php echo esc_url( get_permalink( $services_page->ID ) ); ?>" class="about-btn">
-                                            <img decoding="async" src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/icon.svg' ); ?>" alt="Star">
+                                            <img decoding="async" src="<?php echo esc_url( $about_btn_icon ); ?>" alt="Button">
                                         </a>
                                     <?php endif; ?>
                                 </div>
@@ -147,7 +216,7 @@ get_header();
             <div class="col-md-12">
                 <div class="section-heading" data-aos="fade-up">
                     <h6>
-                        <img decoding="async" src="<?php echo esc_url( PAXDES_THEME_URI . '/assets/images/star-2.png' ); ?>" alt="Star">
+                        <img decoding="async" src="<?php echo esc_url( $star_icon ); ?>" alt="Star">
                         <?php esc_html_e( 'Leistungen', 'paxdes-portfolio' ); ?>
                     </h6>
                     <h2><?php esc_html_e( 'Meine Spezialisierungen', 'paxdes-portfolio' ); ?></h2>
